@@ -1,0 +1,56 @@
+#!/usr/bin/env php
+<?php
+
+require_once __DIR__ . '/../vendor/autoload.php';
+
+use ProjectStructureGenerator\Generator;
+
+/**
+ * Project Structure Generator CLI
+ *
+ * Usage: php bin/generate-structure [source-path] [output-file]
+ */
+
+// Parse command line arguments
+$sourcePath = $argv[1] ?? '.';
+$outputFile = $argv[2] ?? 'project-structure.txt';
+
+// Display help if requested
+if (in_array('--help', $argv) || in_array('-h', $argv)) {
+    echo "Project Structure Generator\n";
+    echo "==========================\n\n";
+    echo "Usage: php bin/generate-structure [source-path] [output-file]\n\n";
+    echo "Arguments:\n";
+    echo "  source-path    Directory to scan (default: current directory)\n";
+    echo "  output-file    Output file path (default: project-structure.txt)\n\n";
+    echo "Options:\n";
+    echo "  -h, --help     Show this help message\n";
+    echo "  -v, --version  Show version information\n\n";
+    echo "Examples:\n";
+    echo "  php bin/generate-structure\n";
+    echo "  php bin/generate-structure /path/to/project\n";
+    echo "  php bin/generate-structure . my-structure.txt\n";
+    exit(0);
+}
+
+// Display version if requested
+if (in_array('--version', $argv) || in_array('-v', $argv)) {
+    echo "Project Structure Generator v1.0.0\n";
+    exit(0);
+}
+
+try {
+    echo "Generating project structure...\n";
+    echo "Source: " . realpath($sourcePath) . "\n";
+    echo "Output: " . $outputFile . "\n\n";
+
+    $generator = new Generator();
+    $generator->generate($sourcePath, $outputFile);
+
+    echo "Project structure generated successfully!\n";
+    echo "Output saved to: " . $outputFile . "\n";
+
+} catch (Exception $e) {
+    echo "❌ Error: " . $e->getMessage() . "\n";
+    exit(1);
+}

@@ -1,0 +1,23 @@
+{
+    "name": "sjeuneje/project-structure-generator",
+    "description": "Create a txt file containing the structure of your project.",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "ProjectStructureGenerator\\": "src/"
+        }
+    },
+    "bin": ["bin/generate-structure"],
+    "authors": [
+        {
+            "name": "sjeuneje"
+        }
+    ],
+    "require": {
+        "php": ">=8.3"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.0"
+    }
+}
