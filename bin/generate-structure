@@ -51,6 +51,6 @@ try {
     echo "Output saved to: " . $outputFile . "\n";
 
 } catch (Exception $e) {
-    echo "❌ Error: " . $e->getMessage() . "\n";
+    echo "Error: " . $e->getMessage() . "\n";
     exit(1);
 }

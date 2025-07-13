@@ -68,7 +68,7 @@ class Generator
         $this->scanDirectory($sourcePath, 0);
         file_put_contents($outputFile, $this->output);
 
-        var_dump($this->output);
+        echo $this->output . "\n";
 
         return $this->output;
     }
